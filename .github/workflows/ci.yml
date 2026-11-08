@@ -12,10 +12,6 @@ on:
         required: false
         type: boolean
         default: false
-      model_url:
-        description: 'URL of the model release asset to evaluate (leave empty to use default release)'
-        required: false
-        default: ''
 
 jobs:
   # Stage 1: Linting
@@ -34,7 +30,7 @@ jobs:
       - name: Install Linting Tools
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 ruff
+          pip install flake8
 
       - name: Run Flake8 Linter
         run: |
@@ -77,10 +73,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install ML Inference Dependencies
+      - name: Install Evaluation Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --extra-index-url https://download.pytorch.org/whl/cpu torch==2.5.1+cpu transformers==4.46.3
+          pip install jsonschema
 
       - name: Download Model Artifact from GitHub Release
         id: download-model
@@ -88,57 +84,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p models/eval_model
-          if [ "${{ github.event.inputs.evaluate_bad_model }}" = "true" ]; then
-            echo "Running deliberately bad model test (untrained Pythia-70M quality gate rejection)..."
-            if [ -f results/untrained_validation_predictions.jsonl ]; then
-              cp results/untrained_validation_predictions.jsonl eval_predictions.jsonl
-            else
-              python -c "
-import json
-val = [json.loads(l) for l in open('data/validation.jsonl', encoding='utf-8') if l.strip()]
-with open('eval_predictions.jsonl', 'w', encoding='utf-8') as f:
-    for item in val:
-        f.write(json.dumps({'id': item['id'], 'prediction': 'This is an untrained model output not in JSON format'}) + '\n')
-"
-            fi
-          elif [ -n "${{ github.event.inputs.model_url }}" ]; then
-            echo "Downloading model from custom input: ${{ github.event.inputs.model_url }}"
-            curl -sL "${{ github.event.inputs.model_url }}" -o models/eval_model/model.safetensors || true
-          else
-            echo "Downloading model asset from GitHub Release v1..."
-            gh release download v1 --repo ${{ github.repository }} --dir models/eval_model || true
-            if [ -f models/eval_model/model.safetensors ]; then
-              echo "Release asset downloaded successfully."
-              sha256sum models/eval_model/model.safetensors
-            fi
-            if [ -f results/student_validation_predictions.jsonl ]; then
-              echo "Using verified student evaluation predictions for quality gate."
-              cp results/student_validation_predictions.jsonl eval_predictions.jsonl
-            fi
+          echo "Attempting to download model assets from GitHub Release v1..."
+          gh release download v1 --repo ${{ github.repository }} --dir models/eval_model || true
+          if [ -f models/eval_model/model.safetensors ]; then
+            echo "Release asset downloaded successfully."
+            sha256sum models/eval_model/model.safetensors
           fi
 
       - name: Run Evaluation Predictions
         run: |
-          if [ ! -f eval_predictions.jsonl ] && [ -d models/v1 ]; then
-            python -c "
-import json, torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-tokenizer = AutoTokenizer.from_pretrained('models/v1')
-model = AutoModelForCausalLM.from_pretrained('models/v1')
-model.eval()
-val = [json.loads(l) for l in open('data/validation.jsonl', encoding='utf-8') if l.strip()]
-preds = []
-for r in val:
-    p = 'Extract intent, date, time, and place from the command. Return only a JSON object.\nCommand: ' + r['text'] + '\nJSON: '
-    inp = tokenizer(p, return_tensors='pt')
-    with torch.no_grad():
-        out = model.generate(**inp, max_new_tokens=60, do_sample=False, pad_token_id=tokenizer.eos_token_id)
-    text = tokenizer.decode(out[0][inp['input_ids'].shape[1]:], skip_special_tokens=True)
-    preds.append({'id': r['id'], 'prediction': text.strip()})
-with open('eval_predictions.jsonl', 'w', encoding='utf-8') as f:
-    for item in preds:
-        f.write(json.dumps(item, ensure_ascii=False) + '\n')
-"
+          if [ "${{ github.event.inputs.evaluate_bad_model }}" = "true" ]; then
+            echo "Running deliberately bad model test..."
+            python tools/ci_eval.py --bad-model --out eval_predictions.jsonl
+          else
+            echo "Running student model evaluation..."
+            python tools/ci_eval.py --out eval_predictions.jsonl
           fi
 
       # Stage 4: Quality Gate (--min-validity 95)
@@ -160,4 +120,3 @@ with open('eval_predictions.jsonl', 'w', encoding='utf-8') as f:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
