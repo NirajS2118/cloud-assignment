@@ -138,6 +138,9 @@ Calculated using $\text{Usable Hosts} = 2^{32-\text{prefix}} - 2$:
   4. Quality Gate (`score.py --min-validity 95`)
   5. Secret Scanning (`gitleaks`)
 - **Quality Gate Demonstration:** Untrained Pythia-70M fails quality gate with 0.0% validity, correctly blocking pipeline.
+  - **Failed Run (Quality Gate Rejection):** `https://github.com/NirajS2118/cloud-assignment/actions/runs/42489088090`
+  - **Successful Production Run (Student Passed):** `https://github.com/NirajS2118/cloud-assignment/actions/runs/42488729084`
+  - **GitHub Release v1 Asset:** `https://github.com/NirajS2118/cloud-assignment/releases/tag/v1`
 - **AI Use:** Fully disclosed and documented in `AI_USE.md`.
 
 ---
