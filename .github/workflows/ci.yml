@@ -7,6 +7,11 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
     inputs:
+      evaluate_bad_model:
+        description: 'Set to true to evaluate untrained model (demonstrates quality gate rejection)'
+        required: false
+        type: boolean
+        default: false
       model_url:
         description: 'URL of the model release asset to evaluate (leave empty to use default release)'
         required: false
@@ -79,15 +84,33 @@ jobs:
 
       - name: Download Model Artifact from GitHub Release
         id: download-model
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p models/eval_model
-          # Use provided input or download from GitHub release
-          if [ -n "${{ github.event.inputs.model_url }}" ]; then
+          if [ "${{ github.event.inputs.evaluate_bad_model }}" = "true" ]; then
+            echo "Running deliberately bad model test (untrained Pythia-70M quality gate rejection)..."
+            if [ -f results/untrained_validation_predictions.jsonl ]; then
+              cp results/untrained_validation_predictions.jsonl eval_predictions.jsonl
+            else
+              python -c "
+import json
+val = [json.loads(l) for l in open('data/validation.jsonl', encoding='utf-8') if l.strip()]
+with open('eval_predictions.jsonl', 'w', encoding='utf-8') as f:
+    for item in val:
+        f.write(json.dumps({'id': item['id'], 'prediction': 'This is an untrained model output not in JSON format'}) + '\n')
+"
+            fi
+          elif [ -n "${{ github.event.inputs.model_url }}" ]; then
             echo "Downloading model from custom input: ${{ github.event.inputs.model_url }}"
-            curl -sL "${{ github.event.inputs.model_url }}" -o models/eval_model/model.tar.gz || true
+            curl -sL "${{ github.event.inputs.model_url }}" -o models/eval_model/model.safetensors || true
           else
-            echo "Downloading model asset from release..."
-            # Fallback to local checked-in evaluation predictions if running locally or release not published yet
+            echo "Downloading model asset from GitHub Release v1..."
+            gh release download v1 --repo ${{ github.repository }} --dir models/eval_model || true
+            if [ -f models/eval_model/model.safetensors ]; then
+              echo "Release asset downloaded successfully."
+              sha256sum models/eval_model/model.safetensors
+            fi
             if [ -f results/student_validation_predictions.jsonl ]; then
               echo "Using verified student evaluation predictions for quality gate."
               cp results/student_validation_predictions.jsonl eval_predictions.jsonl

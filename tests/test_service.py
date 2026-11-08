@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 # Ensure service directory is in sys.path
 sys.path.insert(0, str(Path(__file__).parent.parent / "service"))
 
-import app as service_app
+import app as service_app  # noqa: E402
 
 
 class TestService(unittest.TestCase):
