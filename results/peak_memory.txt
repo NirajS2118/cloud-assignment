@@ -1,0 +1,13 @@
+50 Sequential Requests Test (1 CPU, 1 GiB limits):
+Total requests sent: 50
+Successful (HTTP 200): 43
+Validation errors / 500s: 7
+Average latency: 0.434s
+Min latency: 0.363s
+Max latency: 1.052s
+
+kubectl top pods -n app output:
+NAME                              CPU(cores)   MEMORY(bytes)   
+command-parser-544f949df4-s7rnt   124m         493Mi           
+command-parser-544f949df4-wzxn9   2m           466Mi           
+

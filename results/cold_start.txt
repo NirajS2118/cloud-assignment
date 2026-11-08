@@ -1,0 +1,47 @@
+Cold Start Test (Three Runs):
+Run 1: 10.72 seconds
+Run 2: 10.73 seconds
+Run 3: 10.76 seconds
+Median Cold Start Time: 10.73 seconds
+
+Log Evidence of Model Download from Object Storage:
+--- Run 1 Logs (command-parser-544f949df4-4dfb9) ---
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+Downloaded 7 model files
+Model checksum verified
+
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2703.39it/s]
+Model loaded. Service is ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     10.42.1.1:60408 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     10.42.1.1:60420 - "GET /readyz HTTP/1.1" 200 OK
+--- Run 2 Logs (command-parser-544f949df4-hj698) ---
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+Downloaded 7 model files
+Model checksum verified
+
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2456.82it/s]
+Model loaded. Service is ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     10.42.1.1:60978 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     10.42.1.1:60980 - "GET /readyz HTTP/1.1" 200 OK
+--- Run 3 Logs (command-parser-544f949df4-c5rpt) ---
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+Downloaded 7 model files
+Model checksum verified
+
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2490.87it/s]
+Model loaded. Service is ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     10.42.1.1:33182 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     10.42.1.1:33192 - "GET /readyz HTTP/1.1" 200 OK
+

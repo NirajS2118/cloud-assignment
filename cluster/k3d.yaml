@@ -1,0 +1,15 @@
+
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: cloud-assignment
+servers: 1
+agents: 1
+image: rancher/k3s:v1.31.5-k3s1
+ports:
+  - port: 8081:80
+    nodeFilters:
+      - loadbalancer
+  - port: 8444:443
+    nodeFilters:
+      - loadbalancer

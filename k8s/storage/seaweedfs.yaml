@@ -1,0 +1,86 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: seaweedfs-data
+  namespace: data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seaweedfs
+  namespace: data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seaweedfs
+  template:
+    metadata:
+      labels:
+        app: seaweedfs
+    spec:
+      containers:
+        - name: seaweedfs
+          image: chrislusf/seaweedfs:latest
+          args:
+            - server
+            - -dir=/data
+            - -s3
+            - -volume.max=5
+          ports:
+            - name: master
+              containerPort: 9333
+            - name: volume
+              containerPort: 8080
+            - name: filer
+              containerPort: 8888
+            - name: s3
+              containerPort: 8333
+          volumeMounts:
+            - name: storage
+              mountPath: /data
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9333
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9333
+            initialDelaySeconds: 30
+            periodSeconds: 20
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: seaweedfs-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seaweedfs
+  namespace: data
+spec:
+  selector:
+    app: seaweedfs
+  ports:
+    - name: master
+      port: 9333
+      targetPort: 9333
+    - name: volume
+      port: 8080
+      targetPort: 8080
+    - name: filer
+      port: 8888
+      targetPort: 8888
+    - name: s3
+      port: 8333
+      targetPort: 8333

@@ -1,0 +1,40 @@
+# Model weights (MUST NOT be committed to git per assignment specification)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# Student raw cache directories
+models/student/
+models/checkpoints/
+
+# Compressed archives & temporary packages
+*.zip
+*.tar
+*.tar.gz
+parser-runtime.tar
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.cache/
+
+# Credentials and environment secrets
+*.env
+.env*
+!*.env.example
+s3-credentials.env
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Logs and system artifacts
+*.log
+.DS_Store
+Thumbs.db

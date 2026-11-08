@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Personal Reflections - CS3081 Cloud Computing</title>
+<style>
+  @page {
+    size: A4;
+    margin: 10mm 14mm 10mm 14mm;
+  }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: #222;
+    line-height: 1.3;
+    font-size: 8pt;
+    margin: 0;
+    padding: 0;
+  }
+  .page {
+    page-break-after: always;
+    box-sizing: border-box;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+  .doc-header {
+    border-bottom: 2px solid #1a365d;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .doc-title {
+    font-size: 13.5pt;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 2px;
+  }
+  .doc-subtitle {
+    font-size: 9pt;
+    color: #2b6cb0;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .student-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #333;
+    background-color: #ebf8ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #bee3f8;
+  }
+  h2 {
+    font-size: 9.5pt;
+    color: #1a365d;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 2px;
+    margin-top: 8px;
+    margin-bottom: 3px;
+  }
+  p {
+    margin: 0 0 4px 0;
+    text-align: justify;
+  }
+  ul {
+    margin: 2px 0 4px 14px;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 1.5px;
+  }
+  .footer-note {
+    border-top: 1px solid #cbd5e0;
+    padding-top: 3px;
+    margin-top: 8px;
+    font-size: 7pt;
+    color: #718096;
+    display: flex;
+    justify-content: space-between;
+  }
+  .highlight-card {
+    background-color: #f7fafc;
+    border-left: 2.5px solid #3182ce;
+    padding: 4px 6px;
+    margin: 4px 0;
+    font-size: 7.5pt;
+  }
+  strong {
+    color: #1a202c;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-title">Course Mini Project: Personal Reflection & Learning Log</div>
+    <div class="doc-subtitle">CS3081: Cloud Computing — Knowledge Distillation & Edge Microservice Cloud Deployment</div>
+    <div class="student-info">
+      <div><strong>Name:</strong> Niraj Kumar</div>
+      <div><strong>Roll No:</strong> 230101037</div>
+      <div><strong>GitHub:</strong> https://github.com/NirajS2118/cloud-assignment</div>
+      <div><strong>Institute:</strong> IIIT Senapati, Manipur</div>
+    </div>
+  </div>
+
+  <h2>1. Overview and Core Learning Journey</h2>
+  <p>
+    This project was an exceptionally enriching, multidisciplinary capstone bridging Modern Cloud Native Engineering and Natural Language Processing. Prior to this assignment, my exposure to Large Language Models (LLMs) was predominantly user-facing or API-centric. Through this comprehensive project, I transitioned from conceptual understanding to hands-on systems engineering, deploying a production-style, containerized AI inference microservice orchestrated with Kubernetes on constrained local resources.
+  </p>
+  <p>
+    The central learning objective was understanding how sequence-level knowledge distillation enables tiny models (such as EleutherAI's 70-million-parameter Pythia-70M) to emulate complex reasoning patterns synthesized by large models (Phi-3.5-mini at 3.8 billion parameters), producing production-grade structured JSON voice parser outputs while keeping computational footprint minimal.
+  </p>
+
+  <h2>2. Knowledge Distillation: Conceptual Insights & Teacher-Student Dynamics</h2>
+  <p>
+    Exploring distillation hands-on dispelled several theoretical misconceptions. I realized that <em>logit-based distillation</em> is not a universal panacea: in real-world heterogeneous architectures, mismatched tokenizers (Phi-3.5's 32K SentencePiece vs Pythia-70M's 50K byte-level BPE) and black-box inference servers prevent direct probability alignment.
+  </p>
+  <p>
+    Consequently, <em>sequence-level distillation</em> (Kim and Rush, 2016) provided the pragmatic breakthrough: treating the teacher's greedily decoded JSON sequence as ground-truth targets. The empirical impact was startling: the base untrained Pythia-70M scored exactly <strong>0.0% JSON validity</strong>, outputting unstructured babble. After fine-tuning on 1,500 teacher-distilled pairs for just a single epoch, the student's JSON structural validity jumped to <strong>99.0%</strong>, and its full-frame semantic accuracy rose from 0% to <strong>16.0%</strong>. This concretely demonstrated how knowledge distillation compresses syntactic constraints into tiny neural networks.
+  </p>
+
+  <h2>3. Object Storage and Scalable Data Sharding Architecture</h2>
+  <p>
+    Implementing SeaweedFS as an in-cluster S3 object store revealed fundamental cloud architecture principles:
+  </p>
+  <ul>
+    <li><strong>Decoupling Compute and Storage:</strong> Storing datasets and model artifacts in SeaweedFS rather than baking weights into Docker image layers allowed our container images to remain lean (1.87 GB), rapid to spin up, and reusable across model iterations.</li>
+    <li><strong>Parallel Worker Sharding:</strong> Generating 3,000 teacher inferences on local CPU hardware represented an immense computational hurdle (~2–3 hours). By implementing an index-modulo worker partitioning scheme (<code>line_number % SHARD_COUNT == SHARD_INDEX</code>) across concurrent Kubernetes batch jobs, I observed linear throughput scaling across CPU cores without duplicate processing.</li>
+    <li><strong>Deterministic Dataset Auditing:</strong> Building <code>worker/clean.py</code> taught me the rigor of data engineering. Rigorously filtering invalid JSON (75 records), malformed keys (4), invalid intents (82), non-substring slot hallucinations (359), and duplicates (45) yielded 2,435 verified clean records whose SHA-256 digest guaranteed reproducibility across environments.</li>
+  </ul>
+
+  <div class="footer-note">
+    <span>CS3081 Cloud Computing — Niraj Kumar (230101037)</span>
+    <span>Page 1 of 3</span>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <h2>4. Containerization & Edge Microservice Optimization</h2>
+  <p>
+    Building the inference container highlighted the critical distinction between development and production images. Default PyTorch distributions bundle gigabytes of CUDA and cuDNN binaries, ballooning images beyond 5–7 GB. By utilizing multi-stage builds and pinning CPU-only wheels (<code>--extra-index-url https://download.pytorch.org/whl/cpu</code>), I compressed the service container to <strong>1.87 GB</strong>, well within the 2 GB assignment limit.
+  </p>
+  <p>
+    Furthermore, rigorous memory profiling under strict cgroup limits (1 CPU core, 1 GiB memory) demonstrated that our FastAPI service, even under continuous inference bursts across 50 sequential requests, maintained a steady peak resident memory of <strong>493 MiB</strong> (48.1% of ceiling), guaranteeing immunity from Out-Of-Memory (OOM) kernel kills.
+  </p>
+
+  <h2>5. Kubernetes Orchestration, Probes, Scaling, and High Availability</h2>
+  <p>
+    Deploying the application within a local <code>k3d</code> cluster deepened my appreciation of Kubernetes as a self-healing control plane:
+  </p>
+  <ul>
+    <li><strong>The Critical Role of Probes:</strong> Without properly configured readiness probes (<code>/readyz</code>), Kubernetes immediately routes incoming ingress traffic to newly created pods before PyTorch completes weight loading from S3. By orchestrating startup, liveness (<code>/healthz</code>), and readiness probes, our service maintained zero dropped connections during pod initialization.</li>
+    <li><strong>Zero-Downtime Rolling Updates & Rollbacks:</strong> Testing a live deployment rolling update from <code>v1</code> to <code>v2</code> while maintaining active Locust traffic demonstrated Kubernetes' rolling deployment strategy. Traffic seamlessly transitioned across replicas with a <strong>0.0% error rate</strong>, and executing <code>kubectl rollout undo</code> restored <code>v1</code> instantaneously.</li>
+    <li><strong>Self-Healing Recovery:</strong> When I deliberately killed a running pod during active load testing, Kubernetes automatically detected the replica deficit and scheduled a replacement pod that downloaded weights, verified checksums, and restored the replica count to 2, all with <strong>0.0% dropped requests</strong>.</li>
+    <li><strong>Horizontal Pod Autoscaler (HPA):</strong> Configuring metrics-server CPU-based autoscaling (min 1, max 2, 70% target utilization) illustrated how cloud elasticity dynamically absorbs traffic spikes while preventing resource overprovisioning.</li>
+  </ul>
+
+  <h2>6. Software-Defined Networking: Stateless NACLs vs Stateful Firewalls</h2>
+  <p>
+    Working through Task 5 provided profound clarity on networking layers and Access Control Lists. Designing the public subnet NACL (<code>network/nacl.json</code>) required adopting a strict packet-by-packet mindset:
+  </p>
+  <div class="highlight-card">
+    <strong>Key Networking Insight:</strong> In stateful firewalls, established connections automatically allow return packets. In contrast, a <em>stateless NACL</em> has no connection memory; outbound responses destined for client ephemeral ports (1024–65535) or internal app subnet replies must be explicitly permitted, or the traffic is blacklisted.
+  </div>
+  <p>
+    Additionally, implementing first-match-wins rule ordering demonstrated why security blacklists must always precede broad allow rules: placing the malicious range <code>198.51.100.0/24</code> at Rule 90 ensured complete denial before broad web allow rules (Rules 100/110) were evaluated. Simulating the rules yielded a perfect <strong>100.0% pass rate</strong> (6/6 sample packets).
+  </p>
+
+  <div class="footer-note">
+    <span>CS3081 Cloud Computing — Niraj Kumar (230101037)</span>
+    <span>Page 2 of 3</span>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <h2>7. Engineering Challenges Faced & Technical Solutions</h2>
+  <ul>
+    <li><strong>Thread Contention on Multi-Core Laptop CPU:</strong> During early student training runs, PyTorch CPU training stalled due to OpenMP thread lock contention across hyperthreaded laptop cores. <em>Resolution:</em> Explicitly invoking <code>torch.set_num_threads(4)</code> and pinning DataLoader batch sizes eliminated lock overhead, reducing step latency significantly.</li>
+    <li><strong>Readiness Race Condition During Cold Starts:</strong> Pods initially reported ready before model weights were downloaded from SeaweedFS, leading to HTTP 500 errors on early requests. <em>Resolution:</em> Rewrote the FastAPI application using asynchronous <code>lifespan</code> context managers and gated <code>/readyz</code> strictly on <code>READY = True</code> after cryptographic SHA-256 verification.</li>
+    <li><strong>Hallucinated Substring Slot Values:</strong> Because the student model is compact, it occasionally hallucinated extra words or rephrased dates (e.g. "two pm" instead of "2 pm"). <em>Resolution:</em> Implemented two-tiered runtime validation in <code>service/app.py</code> that enforces exact substring matching and graceful HTTP 500 error propagation when output schemas are breached.</li>
+  </ul>
+
+  <h2>8. Key Empirical Findings & Quantitative Observations</h2>
+  <ul>
+    <li><strong>Inference Latency:</strong> Across Locust load testing (4 users, 300+ requests), the service achieved a median latency of <strong>740 ms</strong> and a p95 of <strong>900 ms</strong>, well beneath the 5,000 ms SLA boundary.</li>
+    <li><strong>Throughput & Scaling:</strong> The 2-replica deployment sustained <strong>5.13 requests per second</strong> (~18,468 requests/hour) with Traefik Ingress balancing traffic almost perfectly (56.15% vs 43.85% distribution across pods).</li>
+    <li><strong>Cold-Start Metric:</strong> Measured three cold-start iterations from container creation to Ready status: 10.72s, 10.73s, and 10.76s, yielding a <strong>median cold start of 10.73 seconds</strong>.</li>
+    <li><strong>Economic Efficiency:</strong> Utilizing <code>rate_card.json</code>, running two replicas at 1 vCPU and 1 GiB limits costs ₹7.90/hour. At 18,468 requests/hour, this translates to an extraordinarily cost-effective <strong>₹0.43 per 1,000 requests</strong>.</li>
+  </ul>
+
+  <h2>9. What Could Be Done Better & Future Roadmap</h2>
+  <p>
+    Reflecting on the architecture, several meaningful improvements could be pursued in a production cloud setting:
+  </p>
+  <ul>
+    <li><em>Model Architecture:</em> Replacing Pythia-70M with a modern quantized 1-billion parameter Small Language Model (e.g. Llama-3.2-1B-Instruct or Qwen-2.5-0.5B) would substantially boost full-frame accuracy beyond 16% without exceeding a 1 GiB memory footprint.</li>
+    <li><em>Inference Acceleration:</em> Exporting PyTorch weights to <strong>ONNX Runtime</strong> with INT8 quantization or running via <code>llama.cpp</code> / GGML would reduce inference latency from 740 ms to under 120 ms and shrink memory consumption to &lt;100 MiB.</li>
+    <li><em>Serverless Scale-to-Zero:</em> Implementing KEDA or Knative would eliminate the idle ₹7.90/hour server cost by scaling replicas to zero during off-peak periods.</li>
+  </ul>
+
+  <h2>10. Concluding Thoughts</h2>
+  <p>
+    This assignment delivered invaluable end-to-end practical mastery across distributed cloud systems. Developing reproducible workflows using <code>make</code>, automating multi-stage CI/CD pipelines with quality gates in GitHub Actions, and designing fault-tolerant Kubernetes deployments reinforced the principles of robust software engineering. I now feel thoroughly equipped to architect, containerize, and deploy intelligent microservices on modern cloud infrastructure.
+  </p>
+
+  <div class="footer-note">
+    <span>CS3081 Cloud Computing — Niraj Kumar (230101037)</span>
+    <span>Page 3 of 3</span>
+  </div>
+</div>
+
+</body>
+</html>

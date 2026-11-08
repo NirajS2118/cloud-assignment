@@ -1,0 +1,13 @@
+Recovery Test:
+Deleted Pod: command-parser-544f949df4-2fssz
+Total requests sent during pod recovery: 33
+Successful requests: 33
+Failed requests: 0
+Failure Rate: 0.00% (Requirement: <= 2%)
+Replica Count Restored: YES (Kubernetes Deployment maintained target replica count of 2)
+
+kubectl get pods -n app output:
+NAME                              READY   STATUS    RESTARTS   AGE
+command-parser-544f949df4-c5rpt   1/1     Running   0          4m20s
+command-parser-544f949df4-trkth   1/1     Running   0          35s
+

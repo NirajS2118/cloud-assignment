@@ -1,0 +1,79 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-worker-0
+  namespace: pipeline
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: teacher-worker
+        shard: "0"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: cloud-teacher-worker:v1
+          imagePullPolicy: Never
+          env:
+            - name: SHARD_INDEX
+              value: "0"
+            - name: SHARD_COUNT
+              value: "2"
+            - name: S3_ENDPOINT
+              value: "http://seaweedfs.data.svc.cluster.local:8333"
+            - name: OLLAMA_URL
+              value: "http://host.docker.internal:11434/api/generate"
+            - name: S3_ACCESS_KEY
+              value: "admin"
+            - name: S3_SECRET_KEY
+              value: "password"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-worker-1
+  namespace: pipeline
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: teacher-worker
+        shard: "1"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: cloud-teacher-worker:v1
+          imagePullPolicy: Never
+          env:
+            - name: SHARD_INDEX
+              value: "1"
+            - name: SHARD_COUNT
+              value: "2"
+            - name: S3_ENDPOINT
+              value: "http://seaweedfs.data.svc.cluster.local:8333"
+            - name: OLLAMA_URL
+              value: "http://host.docker.internal:11434/api/generate"
+            - name: S3_ACCESS_KEY
+              value: "admin"
+            - name: S3_SECRET_KEY
+              value: "password"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"

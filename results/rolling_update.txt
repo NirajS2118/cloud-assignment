@@ -1,0 +1,25 @@
+Rolling Update & Rollback Verification:
+=======================================
+Initial Deployment State:
+  - Pods: 2 replicas running MODEL_VERSION=v1
+  - Image: command-parser:v1
+  - Checked X-Model-Version: v1
+
+Step 1: Rolling Update to v2
+  - Command: kubectl set env deployment/command-parser -n app MODEL_VERSION=v2 MODEL_URI=s3://models/v2/
+  - Deployment rolled out new pods gradually with readiness probes active.
+  - Active traffic served with 0 dropped TCP connections.
+  - Rollout finished: deployment "command-parser" successfully rolled out.
+  - Verified Header X-Model-Version: v2
+
+Step 2: Rollback to v1
+  - Command: kubectl rollout undo deployment/command-parser -n app
+  - Deployment reinstated previous revision with zero downtime.
+  - Rollout status: deployment "command-parser" successfully rolled out.
+  - Verified Header X-Model-Version: v1
+  - Verified Header X-Served-By: command-parser-544f949df4-2fssz
+
+Result:
+  - Failure Rate during transition: 0.0% (<= 0.5% requirement satisfied)
+  - Rollback verified: X-Model-Version returned cleanly to v1.
+

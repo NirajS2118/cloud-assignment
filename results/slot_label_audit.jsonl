@@ -1,0 +1,122 @@
+{"row": 12, "input": "set alarm for tomorrow at two pm", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 50, "input": "remind this after two days", "slot": "date", "incorrect_value": "in two days"}
+{"row": 65, "input": "remove emma's birthday from events", "slot": "date", "incorrect_value": "emma'thy birthday"}
+{"row": 80, "input": "olly remind me my mom's birthday a week before", "slot": "date", "incorrect_value": "a week before mom'thy birthday"}
+{"row": 81, "input": "delete new year's eve from the calendar", "slot": "date", "incorrect_value": "new year'seve"}
+{"row": 87, "input": "what day it is on twenty second april", "slot": "date", "incorrect_value": "20 April"}
+{"row": 93, "input": "add to my reminders to watch new movie today at nine pm", "slot": "time", "incorrect_value": "9 pm"}
+{"row": 97, "input": "please tell me about a hour before thursday about my hair appointment", "slot": "time", "incorrect_value": "an hour before"}
+{"row": 108, "input": "tell me which time is it in new york", "slot": "time", "incorrect_value": "time in New York"}
+{"row": 110, "input": "set an event happy birthday john to repeat on twenty one january two thousand and seventeen", "slot": "date", "incorrect_value": "2017-01-21"}
+{"row": 113, "input": "i need to set a reminder to go to a work meeting on friday at two hundred pm", "slot": "time", "incorrect_value": "2:00 PM"}
+{"row": 127, "input": "what is the current time in lagos nigeria", "slot": "place", "incorrect_value": "Lagos, Nigeria"}
+{"row": 131, "input": "where are the boston redso game playing next", "slot": "place", "incorrect_value": "Boston Red Sox"}
+{"row": 145, "input": "thirteen minutes from now remind me to drive to the park", "slot": "date", "incorrect_value": "null"}
+{"row": 148, "input": "please set the alarm for next morning to seven am", "slot": "time", "incorrect_value": "07:00"}
+{"row": 174, "input": "i have a meeting by two pm today please remind me", "slot": "time", "incorrect_value": "2 PM"}
+{"row": 186, "input": "what could be the time in india", "slot": "time", "incorrect_value": "current time in India"}
+{"row": 204, "input": "remind me tomorrow at two pm", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 215, "input": "i need to set an alarm tomorrow at one thousand two hundred pm to remind me to take my medication", "slot": "time", "incorrect_value": "12:00 PM"}
+{"row": 226, "input": "set a wake up call for ten am", "slot": "time", "incorrect_value": "10 am"}
+{"row": 229, "input": "please set a reminder for church services on sundays for eleven am", "slot": "time", "incorrect_value": "11 am"}
+{"row": 245, "input": "go to calendar and delete an third event of twenty seventh of march twenty seventeen", "slot": "date", "incorrect_value": "2017-03-27"}
+{"row": 271, "input": "add work out to the calendar for monday through friday from five to six hundred am", "slot": "time", "incorrect_value": "five hundred am"}
+{"row": 283, "input": "what day is the twenty second of may", "slot": "date", "incorrect_value": "20th of May"}
+{"row": 311, "input": "what time is the evening meeting i have with john", "slot": "place", "incorrect_value": "meeting with john"}
+{"row": 316, "input": "hey olly how is the weather in long island new york", "slot": "place", "incorrect_value": "Long Island, New York"}
+{"row": 334, "input": "tell me the weather in miami florida", "slot": "place", "incorrect_value": "Miami, Florida"}
+{"row": 346, "input": "set reminder for tomorrow at two pm", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 357, "input": "add lunch appointment with lisa to january second at twelve thirty pm", "slot": "date", "incorrect_value": "Januзуary"}
+{"row": 364, "input": "please create an event with only these people", "slot": "place", "incorrect_value": "with these people"}
+{"row": 379, "input": "should i bring snow shoes", "slot": "place", "incorrect_value": "snowy area"}
+{"row": 398, "input": "make an alarm to wake me up after five hours", "slot": "time", "incorrect_value": "five hours later"}
+{"row": 409, "input": "tell me the humidity level downtown today", "slot": "place", "incorrect_value": "downtthy"}
+{"row": 422, "input": "add to my calendar mom's fashion dinner for may fifth", "slot": "place", "incorrect_value": "mom'sin fashion dinner"}
+{"row": 427, "input": "should i wear rain boots", "slot": "place", "incorrect_value": "weather"}
+{"row": 431, "input": "when is my dental appointment on the calendar", "slot": "place", "incorrect_value": "dentist"}
+{"row": 437, "input": "what is the time over in florida", "slot": "time", "incorrect_value": "now"}
+{"row": 456, "input": "clear all events from march seven", "slot": "date", "incorrect_value": "March 7"}
+{"row": 464, "input": "wake me up at ten", "slot": "time", "incorrect_value": "10:00"}
+{"row": 466, "input": "remind me of meeting five minutes before time", "slot": "time", "incorrect_value": "time - five minutes"}
+{"row": 477, "input": "what time is it in new york", "slot": "time", "incorrect_value": "now"}
+{"row": 480, "input": "set me a reminder for the get together with the women's club on sunday after church", "slot": "place", "incorrect_value": "women' extraneous information is ignored, and the relevant details are extracted to form the JSON object. The intent is "}
+{"row": 490, "input": "do i have a game on april seven", "slot": "date", "incorrect_value": "April 7"}
+{"row": 503, "input": "hey olly what's the time", "slot": "time", "incorrect_value": "what'm"}
+{"row": 507, "input": "set an alarm for two hours from now", "slot": "date", "incorrect_value": "today"}
+{"row": 507, "input": "set an alarm for two hours from now", "slot": "time", "incorrect_value": "in two hours"}
+{"row": 510, "input": "add to calendar may two is mary's birthday repeat every year", "slot": "date", "incorrect_value": "mary' extraneous information is ignored, leaving only the relevant date: "}
+{"row": 516, "input": "please set a reminder for me to go to work in ten minutes", "slot": "time", "incorrect_value": "ten minutes from now"}
+{"row": 542, "input": "please mark the date first of february twenty seventeen and set the reminder at five pm to make an appointment with mr richard", "slot": "date", "incorrect_value": "2017-02-01"}
+{"row": 542, "input": "please mark the date first of february twenty seventeen and set the reminder at five pm to make an appointment with mr richard", "slot": "time", "incorrect_value": "17:00"}
+{"row": 542, "input": "please mark the date first of february twenty seventeen and set the reminder at five pm to make an appointment with mr richard", "slot": "place", "incorrect_value": "make an appointment with Mr. Richard"}
+{"row": 575, "input": "please check third event of twenty second of march twenty seventeen", "slot": "date", "incorrect_value": "2017-03-22"}
+{"row": 578, "input": "set reminder for meeting tuesday with bill", "slot": "place", "incorrect_value": "meeting with bill"}
+{"row": 592, "input": "remind me to buy a gift once in morning and once in evening", "slot": "time", "incorrect_value": "morning and evening"}
+{"row": 600, "input": "schedule an alarm to wake me up after three hours", "slot": "time", "incorrect_value": "three hours from now"}
+{"row": 629, "input": "i need a repeating reminder for every monday at three hundred and thirty pm", "slot": "time", "incorrect_value": "3:30 PM"}
+{"row": 655, "input": "will you put in my calendar that john c and his wife are meeting with us at four pm tomorrow", "slot": "time", "incorrect_value": "4 pm"}
+{"row": 667, "input": "is jimmie's party on friday cancelled", "slot": "place", "incorrect_value": "jimmie'se party"}
+{"row": 679, "input": "postpone my alarm by fifteen mins", "slot": "time", "incorrect_value": "postpone fifteen mins"}
+{"row": 690, "input": "set a meeting with mr forman for thursday at two pm", "slot": "time", "incorrect_value": "2 PM"}
+{"row": 708, "input": "time wellington nz", "slot": "place", "incorrect_value": "Wellington, NZ"}
+{"row": 730, "input": "make a repeating reminder for my work tasks every day at eight am", "slot": "time", "incorrect_value": "08:00"}
+{"row": 742, "input": "please add the meeting with ms boland on wednesday eight hundred am to my calendar", "slot": "time", "incorrect_value": "08:00"}
+{"row": 765, "input": "remove wyatt's birthday party from my calendar", "slot": "date", "incorrect_value": "wyatt'thy"}
+{"row": 783, "input": "erase the meeting tomorrow at ten am", "slot": "time", "incorrect_value": "10 am"}
+{"row": 788, "input": "i have a sales meeting this thursday at seven am please notify me and add to calendar", "slot": "time", "incorrect_value": "07:00"}
+{"row": 827, "input": "set the alarm for two hours from now", "slot": "date", "incorrect_value": "today"}
+{"row": 847, "input": "please remind me to call duker at one pm on thursday", "slot": "time", "incorrect_value": "1 PM"}
+{"row": 851, "input": "please set an alarm for seven hundred and thirty am tomorrow", "slot": "time", "incorrect_value": "07:30"}
+{"row": 858, "input": "what time do i have down for susan's party", "slot": "time", "incorrect_value": "time for Susan' extramarital affair"}
+{"row": 866, "input": "what day of the week was february four nineteen seventy two", "slot": "date", "incorrect_value": "February 4, 1972"}
+{"row": 877, "input": "what day of the week is valentine's on", "slot": "date", "incorrect_value": "Valentine'sup"}
+{"row": 882, "input": "cancel the event valentine's day from the calendar", "slot": "date", "incorrect_value": "Valentine'sup"}
+{"row": 895, "input": "make a list of management staff for the twentieth october meeting", "slot": "place", "incorrect_value": "management staff list"}
+{"row": 907, "input": "i need a six am wakeup call", "slot": "time", "incorrect_value": "06:00"}
+{"row": 919, "input": "what will the weather conditions of lucknow on ninth february two thousand and seventeen", "slot": "date", "incorrect_value": "09 February 2dict7teen"}
+{"row": 926, "input": "hey make sure i go to sarahs birthday party on the twelveth", "slot": "date", "incorrect_value": "twelth"}
+{"row": 950, "input": "please tell me current events for the day", "slot": "date", "incorrect_value": "today"}
+{"row": 960, "input": "remove wyatt's birthday party on my calendar", "slot": "date", "incorrect_value": "wyatt'thy"}
+{"row": 966, "input": "give me the address of my hairdresser for the meeting today", "slot": "place", "incorrect_value": "hairdresser address"}
+{"row": 998, "input": "what meetings occurred between january one and january twelve", "slot": "date", "incorrect_value": "Januзу one"}
+{"row": 1012, "input": "set alarm for one hour from now", "slot": "date", "incorrect_value": "today"}
+{"row": 1015, "input": "do i have a two pm appointment", "slot": "time", "incorrect_value": "2 PM"}
+{"row": 1036, "input": "alexa what is the weather going to be like on march twentieth two thousand and seventeen", "slot": "date", "incorrect_value": "March 20, 2017"}
+{"row": 1041, "input": "add to calendar on this date and time with these people", "slot": "time", "incorrect_value": "this time"}
+{"row": 1051, "input": "can you remind me to go to dentist appointment one day before", "slot": "date", "incorrect_value": "one day before today"}
+{"row": 1063, "input": "set a reminder for wednesdays at two pm", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 1074, "input": "will you remind me of my next dentist appointment one day before", "slot": "date", "incorrect_value": "one day before today"}
+{"row": 1086, "input": "wake me up every weekday at seven am", "slot": "time", "incorrect_value": "07:00"}
+{"row": 1088, "input": "show me one week weather of mumbai", "slot": "date", "incorrect_value": "one week from today"}
+{"row": 1095, "input": "remind me every morning at seven am to take my vitamins", "slot": "time", "incorrect_value": "07:00"}
+{"row": 1110, "input": "set a reminder for a meeting at two pm tomorrow between myself and john", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 1123, "input": "thursday at two pm i must meet with mr forman please mark the calendar", "slot": "time", "incorrect_value": "2 pm"}
+{"row": 1132, "input": "put an alert in my calendar every week", "slot": "date", "incorrect_value": "weekly"}
+{"row": 1166, "input": "please let me know what time seven pm is in pst", "slot": "time", "incorrect_value": "seven pm PST"}
+{"row": 1175, "input": "i need an alarm for nine pm", "slot": "time", "incorrect_value": "9 PM"}
+{"row": 1176, "input": "please wake me up at seven thirty am", "slot": "time", "incorrect_value": "07:30"}
+{"row": 1184, "input": "please set a reminder of raju marriage on thirty first of march twenty seventeen", "slot": "date", "incorrect_value": "31/03/2017"}
+{"row": 1215, "input": "hey what time is it in orlando florida", "slot": "place", "incorrect_value": "Orlando, Florida"}
+{"row": 1246, "input": "tell me what is on the schedule for july seventh", "slot": "date", "incorrect_value": "July 7th"}
+{"row": 1260, "input": "compare weather home and san antonio texas", "slot": "place", "incorrect_value": "home, San Antonio, Texas"}
+{"row": 1277, "input": "whats the time", "slot": "time", "incorrect_value": "what'thy"}
+{"row": 1288, "input": "remind me of the meeting on the twenty second of january", "slot": "date", "incorrect_value": "20th of January"}
+{"row": 1344, "input": "bring up google calendar please add event for may fifth", "slot": "date", "incorrect_value": "May 5"}
+{"row": 1373, "input": "every other wednesday remind me to go grocery shopping", "slot": "place", "incorrect_value": "grocery store"}
+{"row": 1376, "input": "prompt me about tv programme at sixteen fifteen on thursday at bbc four", "slot": "time", "incorrect_value": "16:15"}
+{"row": 1377, "input": "ok google what is the weather going to be like on march twentieth two thousand and seventeen", "slot": "date", "incorrect_value": "March 20, 2017"}
+{"row": 1384, "input": "can you give me a ten minute timer", "slot": "time", "incorrect_value": "ten minutes from now"}
+{"row": 1390, "input": "does my calendar say i'm free on april one two thousand and seventeen", "slot": "date", "incorrect_value": "April 1, 2thyteen"}
+{"row": 1402, "input": "i want a reminder for an editor's meeting at two pm thursday", "slot": "time", "incorrect_value": "2 PM"}
+{"row": 1407, "input": "please show me weather on twenty seventh march two thousand seventeen", "slot": "date", "incorrect_value": "2007-03-27"}
+{"row": 1415, "input": "olly i'll be seeing my therapist every thursday at two pm", "slot": "time", "incorrect_value": "2 PM"}
+{"row": 1436, "input": "what's the current time in orlando florida", "slot": "place", "incorrect_value": "Orlando, Florida"}
+{"row": 1441, "input": "add to calendar every year on may two is mary's birthday", "slot": "date", "incorrect_value": "May 2"}
+{"row": 1444, "input": "remind me to turn off the lights in ten minutes", "slot": "place", "incorrect_value": "living room"}
+{"row": 1468, "input": "please tell me when is the birthday party of jenny", "slot": "date", "incorrect_value": "Jenny's birthday"}
+{"row": 1473, "input": "alert me about birthday of wife in advance", "slot": "date", "incorrect_value": "wife'thy birthday"}
+{"row": 1484, "input": "add new year's eve to calendar", "slot": "date", "incorrect_value": "year'seve"}
+{"row": 1485, "input": "remember me my child's birthday", "slot": "date", "incorrect_value": "my child'thy birthday"}
+{"row": 1486, "input": "i want to go to sally's birthday on saturday at ten pm", "slot": "place", "incorrect_value": "sally'se birthday"}
+{"row": 1496, "input": "schedule a meeting with the vp of the department on the twenty first of march two thousand and seventeen", "slot": "date", "incorrect_value": "2017-03-21"}
+{"row": 1497, "input": "what will be the temperature today for miami florida", "slot": "place", "incorrect_value": "Miami, Florida"}

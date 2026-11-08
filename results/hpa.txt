@@ -1,0 +1,26 @@
+HorizontalPodAutoscaler (HPA) Verification:
+===============================================
+Configuration:
+  - Resource: HorizontalPodAutoscaler/command-parser-hpa
+  - Namespace: app
+  - Target: Deployment/command-parser
+  - Min Replicas: 1
+  - Max Replicas: 2
+  - Target Metric: CPU averageUtilization 70%
+
+Kubernetes HPA Status:
+  - Command: kubectl get hpa -n app
+  - Output:
+    NAME                 REFERENCE                   TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+    command-parser-hpa   Deployment/command-parser   cpu: 44%/70%   1         2         2          12m
+
+Scaling Dynamics:
+  - Under load (Locust concurrent users generating traffic), pod CPU exceeds threshold and HPA scales replica count from 1 to 2.
+  - When traffic ceases, CPU utilization drops back down below 70%.
+  - After the default downscale stabilization window (300 seconds), HPA scales the deployment back down to 1 replica.
+
+Cluster Limitations:
+  - Single-node laptop execution: All nodes/agents run on the same physical CPU/RAM via Docker virtualization in k3d.
+  - Resource contention: Scaling from 1 to 2 replicas does not provision new physical hardware; both replicas share the host's existing cores.
+  - Metrics-server polling interval: CPU metrics update on a 15-30 second cadence, resulting in a slight delay between traffic spikes and scaling events.
+

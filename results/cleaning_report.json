@@ -1,0 +1,195 @@
+{
+  "source_commands": 3000,
+  "raw_predictions": 3000,
+  "valid_predictions": 3000,
+  "missing_predictions": 0,
+  "duplicate_ids": 0,
+  "structurally_invalid": 0,
+  "suspicious_slot_values": 246,
+  "missing_ids": [],
+  "duplicate_id_examples": [],
+  "invalid_examples": [],
+  "suspicious_slot_examples": [
+    {
+      "id": "C0013",
+      "slot": "time",
+      "value": "2 pm",
+      "command": "set alarm for tomorrow at two pm"
+    },
+    {
+      "id": "C0051",
+      "slot": "date",
+      "value": "in two days",
+      "command": "remind this after two days"
+    },
+    {
+      "id": "C0066",
+      "slot": "date",
+      "value": "emma'thy birthday",
+      "command": "remove emma's birthday from events"
+    },
+    {
+      "id": "C0081",
+      "slot": "date",
+      "value": "a week before mom'thy birthday",
+      "command": "olly remind me my mom's birthday a week before"
+    },
+    {
+      "id": "C0082",
+      "slot": "date",
+      "value": "new year'seve",
+      "command": "delete new year's eve from the calendar"
+    },
+    {
+      "id": "C0088",
+      "slot": "date",
+      "value": "20 April",
+      "command": "what day it is on twenty second april"
+    },
+    {
+      "id": "C0094",
+      "slot": "time",
+      "value": "9 pm",
+      "command": "add to my reminders to watch new movie today at nine pm"
+    },
+    {
+      "id": "C0098",
+      "slot": "time",
+      "value": "an hour before",
+      "command": "please tell me about a hour before thursday about my hair appointment"
+    },
+    {
+      "id": "C0109",
+      "slot": "time",
+      "value": "time in New York",
+      "command": "tell me which time is it in new york"
+    },
+    {
+      "id": "C0111",
+      "slot": "date",
+      "value": "2017-01-21",
+      "command": "set an event happy birthday john to repeat on twenty one january two thousand and seventeen"
+    },
+    {
+      "id": "C0114",
+      "slot": "time",
+      "value": "2:00 PM",
+      "command": "i need to set a reminder to go to a work meeting on friday at two hundred pm"
+    },
+    {
+      "id": "C0128",
+      "slot": "place",
+      "value": "Lagos, Nigeria",
+      "command": "what is the current time in lagos nigeria"
+    },
+    {
+      "id": "C0132",
+      "slot": "place",
+      "value": "Boston Red Sox",
+      "command": "where are the boston redso game playing next"
+    },
+    {
+      "id": "C0146",
+      "slot": "date",
+      "value": "null",
+      "command": "thirteen minutes from now remind me to drive to the park"
+    },
+    {
+      "id": "C0149",
+      "slot": "time",
+      "value": "07:00",
+      "command": "please set the alarm for next morning to seven am"
+    },
+    {
+      "id": "C0175",
+      "slot": "time",
+      "value": "2 PM",
+      "command": "i have a meeting by two pm today please remind me"
+    },
+    {
+      "id": "C0187",
+      "slot": "time",
+      "value": "current time in India",
+      "command": "what could be the time in india"
+    },
+    {
+      "id": "C0205",
+      "slot": "time",
+      "value": "2 pm",
+      "command": "remind me tomorrow at two pm"
+    },
+    {
+      "id": "C0216",
+      "slot": "time",
+      "value": "12:00 PM",
+      "command": "i need to set an alarm tomorrow at one thousand two hundred pm to remind me to take my medication"
+    },
+    {
+      "id": "C0227",
+      "slot": "time",
+      "value": "10 am",
+      "command": "set a wake up call for ten am"
+    },
+    {
+      "id": "C0230",
+      "slot": "time",
+      "value": "11 am",
+      "command": "please set a reminder for church services on sundays for eleven am"
+    },
+    {
+      "id": "C0246",
+      "slot": "date",
+      "value": "2017-03-27",
+      "command": "go to calendar and delete an third event of twenty seventh of march twenty seventeen"
+    },
+    {
+      "id": "C0272",
+      "slot": "time",
+      "value": "five hundred am",
+      "command": "add work out to the calendar for monday through friday from five to six hundred am"
+    },
+    {
+      "id": "C0284",
+      "slot": "date",
+      "value": "20th of May",
+      "command": "what day is the twenty second of may"
+    },
+    {
+      "id": "C0312",
+      "slot": "place",
+      "value": "meeting with john",
+      "command": "what time is the evening meeting i have with john"
+    },
+    {
+      "id": "C0317",
+      "slot": "place",
+      "value": "Long Island, New York",
+      "command": "hey olly how is the weather in long island new york"
+    },
+    {
+      "id": "C0335",
+      "slot": "place",
+      "value": "Miami, Florida",
+      "command": "tell me the weather in miami florida"
+    },
+    {
+      "id": "C0347",
+      "slot": "time",
+      "value": "2 pm",
+      "command": "set reminder for tomorrow at two pm"
+    },
+    {
+      "id": "C0358",
+      "slot": "date",
+      "value": "Januзуary",
+      "command": "add lunch appointment with lisa to january second at twelve thirty pm"
+    },
+    {
+      "id": "C0365",
+      "slot": "place",
+      "value": "with these people",
+      "command": "please create an event with only these people"
+    }
+  ],
+  "training_examples_available": 1500
+}

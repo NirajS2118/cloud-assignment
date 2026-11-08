@@ -1,0 +1,27 @@
+{"id": "C0004", "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"}
+{"id": "C0006", "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"}
+{"id": "C0007", "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)"}
+{"id": "C2844", "attempt": 1, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 2, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 3, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 1, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 2, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 3, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C2844", "attempt": 1, "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate"}
+{"id": "C0010", "attempt": 1, "error": "date value was not copied from command: 'this Friday'"}
+{"id": "C0010", "attempt": 2, "error": "date value was not copied from command: 'this Friday'"}
+{"id": "C0010", "attempt": 3, "error": "date value was not copied from command: 'this Friday'"}
+{"id": "C0051", "attempt": 1, "error": "date value was not copied from command: 'in two days'"}
+{"id": "C0051", "attempt": 2, "error": "date value was not copied from command: 'in two days'"}
+{"id": "C0051", "attempt": 3, "error": "date value was not copied from command: 'in two days'"}
+{"id": "C0088", "attempt": 1, "error": "date value was not copied from command: '20th April'"}
+{"id": "C0088", "attempt": 2, "error": "date value was not copied from command: '20th April'"}
+{"id": "C0088", "attempt": 3, "error": "date value was not copied from command: '20th April'"}
+{"id": "C0098", "attempt": 1, "error": "time value was not copied from command: 'one hour before'"}
+{"id": "C0098", "attempt": 2, "error": "time value was not copied from command: 'one hour before'"}
+{"id": "C0098", "attempt": 3, "error": "time value was not copied from command: 'one hour before'"}
+{"id": "C0111", "attempt": 1, "error": "date value was not copied from command: '2021-01-21'"}
+{"id": "C0111", "attempt": 2, "error": "date value was not copied from command: '2021-01-21'"}
+{"id": "C0111", "attempt": 3, "error": "date value was not copied from command: '2021-01-21'"}
+{"id": "C0114", "attempt": 1, "error": "time value was not copied from command: '2:00 pm'"}
+{"id": "C0114", "attempt": 2, "error": "time value was not copied from command: '2:00 pm'"}

@@ -1,0 +1,24 @@
+# Configuration for training student model (Sequence-Level Distillation)
+# Task 2 Requirement 1: Records all six items
+
+model_name: "EleutherAI/pythia-70m"
+random_seed: 42
+learning_rate: 0.00005
+batch_size: 4
+number_of_epochs: 1
+max_sequence_length: 128
+
+library_versions:
+  python: "3.11.9"
+  torch: "2.15.0"
+  transformers: "5.22.1"
+  boto3: "1.43.126"
+
+dataset:
+  train_file: "datasets/v1/train.jsonl"
+  max_train_records: 1500
+
+output:
+  output_dir: "models/v1"
+  loss_file: "training/loss.csv"
+
